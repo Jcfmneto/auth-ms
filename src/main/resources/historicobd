@@ -1,0 +1,8 @@
+CREATE TABLE users (
+    id UUID PRIMARY KEY,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    born_date DATE NOT NULL,
+    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL
+);
