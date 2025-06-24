@@ -30,5 +30,6 @@ public class UserController {
         URI uri = uriComponentsBuilder.path("/auth/register/" + usuario.id()).build().toUri();
         return ResponseEntity.created(uri).body(usuario);
     }
+
 }
 
