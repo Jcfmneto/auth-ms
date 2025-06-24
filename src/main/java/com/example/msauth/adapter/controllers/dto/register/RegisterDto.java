@@ -1,4 +1,4 @@
-package com.example.msauth.adapter.controllers.dto;
+package com.example.msauth.adapter.controllers.dto.register;
 
 import java.time.LocalDate;
 

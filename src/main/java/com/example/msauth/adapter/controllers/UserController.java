@@ -1,8 +1,9 @@
 package com.example.msauth.adapter.controllers;
 
 
-import com.example.msauth.adapter.controllers.dto.RegisterDto;
-import com.example.msauth.adapter.controllers.dto.ResponseDto;
+import com.example.msauth.adapter.controllers.dto.login.LoginDto;
+import com.example.msauth.adapter.controllers.dto.register.RegisterDto;
+import com.example.msauth.adapter.controllers.dto.register.RegisterResponseDto;
 import com.example.msauth.adapter.service.AuthApplicationService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +26,16 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<ResponseDto> register(@RequestBody @Valid RegisterDto dto, UriComponentsBuilder uriComponentsBuilder){
-        ResponseDto usuario = authApplicationService.register(dto);
+    public ResponseEntity<RegisterResponseDto> register(@RequestBody @Valid RegisterDto dto, UriComponentsBuilder uriComponentsBuilder){
+        RegisterResponseDto usuario = authApplicationService.register(dto);
         URI uri = uriComponentsBuilder.path("/auth/register/" + usuario.id()).build().toUri();
         return ResponseEntity.created(uri).body(usuario);
     }
 
+    @PostMapping
+    public ResponseEntity<?> login(@RequestBody @Valid LoginDto dto){
+        var Token = authApplicationService.login(dto);
+        return ResponseEntity.ok(Token);
+    }
 }
 

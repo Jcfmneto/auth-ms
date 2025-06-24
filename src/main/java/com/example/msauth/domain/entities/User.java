@@ -9,7 +9,7 @@ import java.util.UUID;
 public class
 User {
 
-    private UUID id;
+    private Long id;
     private String username;
     private String password;
     private String email;
@@ -28,12 +28,17 @@ User {
         validarPassword(password);
         validarBornDate(bornDate);
 
-        this.id = UUID.randomUUID();
+
         this.username = username;
         this.password = password;
         this.email = email;
         this.bornDate = bornDate;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
     }
 
     private void validarUsername(String username) {
@@ -60,7 +65,7 @@ User {
         }
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 

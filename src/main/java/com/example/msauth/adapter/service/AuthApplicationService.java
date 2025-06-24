@@ -1,8 +1,10 @@
 package com.example.msauth.adapter.service;
 
-import com.example.msauth.adapter.controllers.dto.DtoMapper;
-import com.example.msauth.adapter.controllers.dto.RegisterDto;
-import com.example.msauth.adapter.controllers.dto.ResponseDto;
+import com.example.msauth.adapter.controllers.dto.login.LoginDto;
+import com.example.msauth.adapter.controllers.dto.login.LoginMapper;
+import com.example.msauth.adapter.controllers.dto.register.RegisterDto;
+import com.example.msauth.adapter.controllers.dto.register.RegisterMapper;
+import com.example.msauth.adapter.controllers.dto.register.RegisterResponseDto;
 import com.example.msauth.application.usecases.CreateUserUseCaseImp;
 import com.example.msauth.application.usecases.LoginUseCaseImp;
 import com.example.msauth.domain.entities.User;
@@ -10,8 +12,8 @@ import com.example.msauth.domain.gateways.PasswordEncoderGateway;
 import com.example.msauth.infra.gateway.UserGatewayImpl;
 import com.example.msauth.infra.persistence.mapper.UserMapper;
 import jakarta.validation.Valid;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class AuthApplicationService {
@@ -19,19 +21,25 @@ public class AuthApplicationService {
     private final UserMapper userMapper;
     private final LoginUseCaseImp loginUseCaseImp;
     private final CreateUserUseCaseImp createUserUseCaseImp;
-    private final DtoMapper dtoMapper;
+    private final RegisterMapper registerMapper;
+    private final LoginMapper loginMapper;
 
-    public AuthApplicationService(UserMapper userMapper, UserGatewayImpl userGateway, PasswordEncoderGateway passwordEncoder, LoginUseCaseImp loginUseCaseImp, CreateUserUseCaseImp createUserUseCaseImp, DtoMapper dtoMapper) {
+
+    public AuthApplicationService(UserMapper userMapper, LoginUseCaseImp loginUseCaseImp, CreateUserUseCaseImp createUserUseCaseImp, RegisterMapper registerMapper, LoginMapper loginMapper) {
         this.userMapper = userMapper;
         this.loginUseCaseImp = loginUseCaseImp;
         this.createUserUseCaseImp = createUserUseCaseImp;
-        this.dtoMapper = dtoMapper;
+        this.registerMapper = registerMapper;
+        this.loginMapper = loginMapper;
     }
 
-    public ResponseDto register(@Valid RegisterDto dto) {
-        User user = dtoMapper.toDomain(dto);
+    public RegisterResponseDto register(RegisterDto dto) {
+        User user = registerMapper.toDomain(dto);
         User salvo = createUserUseCaseImp.execute(user);
-        return dtoMapper.toResponse(salvo);
-
+        return registerMapper.toResponse(salvo);
+    }
+    public String login(LoginDto dto) {
+        User user = loginMapper.toDomain(dto);
+        return loginUseCaseImp.execute(user);
     }
 }
