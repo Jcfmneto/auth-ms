@@ -6,6 +6,7 @@ import com.example.msauth.adapter.controllers.dto.ResponseDto;
 import com.example.msauth.application.usecases.CreateUserUseCaseImp;
 import com.example.msauth.application.usecases.LoginUseCaseImp;
 import com.example.msauth.domain.entities.User;
+import com.example.msauth.domain.gateways.PasswordEncoderGateway;
 import com.example.msauth.infra.gateway.UserGatewayImpl;
 import com.example.msauth.infra.persistence.mapper.UserMapper;
 import jakarta.validation.Valid;
@@ -20,7 +21,7 @@ public class AuthApplicationService {
     private final CreateUserUseCaseImp createUserUseCaseImp;
     private final DtoMapper dtoMapper;
 
-    public AuthApplicationService(UserMapper userMapper, UserGatewayImpl userGateway, PasswordEncoder passwordEncoder, LoginUseCaseImp loginUseCaseImp, CreateUserUseCaseImp createUserUseCaseImp, DtoMapper dtoMapper) {
+    public AuthApplicationService(UserMapper userMapper, UserGatewayImpl userGateway, PasswordEncoderGateway passwordEncoder, LoginUseCaseImp loginUseCaseImp, CreateUserUseCaseImp createUserUseCaseImp, DtoMapper dtoMapper) {
         this.userMapper = userMapper;
         this.loginUseCaseImp = loginUseCaseImp;
         this.createUserUseCaseImp = createUserUseCaseImp;
