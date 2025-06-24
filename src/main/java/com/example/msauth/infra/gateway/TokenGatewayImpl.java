@@ -5,6 +5,6 @@ import com.example.msauth.domain.gateways.TokenGateway;
 public class TokenGatewayImpl implements TokenGateway {
     @Override
     public String generateToken(String email) {
-        return "";
+        return "ksdksdkasdk certo";
     }
 }

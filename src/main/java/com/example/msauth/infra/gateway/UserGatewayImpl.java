@@ -28,6 +28,6 @@ public class UserGatewayImpl implements UserGateway {
     @Override
     @Transactional
     public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email).map(userMapper::toDomain);
     }
 }

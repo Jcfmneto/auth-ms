@@ -4,7 +4,6 @@ import com.example.msauth.domain.exceptions.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class
 User {
