@@ -2,6 +2,7 @@ package com.example.msauth.adapter.controllers;
 
 
 import com.example.msauth.adapter.controllers.dto.login.LoginDto;
+import com.example.msauth.adapter.controllers.dto.login.LoginResponseDto;
 import com.example.msauth.adapter.controllers.dto.register.RegisterDto;
 import com.example.msauth.adapter.controllers.dto.register.RegisterResponseDto;
 import com.example.msauth.adapter.service.AuthApplicationService;
@@ -32,10 +33,11 @@ public class UserController {
         return ResponseEntity.created(uri).body(usuario);
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid LoginDto dto){
-        var Token = authApplicationService.login(dto);
-        return ResponseEntity.ok(Token);
+        String token = authApplicationService.login(dto);
+        LoginResponseDto response = new LoginResponseDto(token);
+        return ResponseEntity.ok(response);
     }
 }
 
