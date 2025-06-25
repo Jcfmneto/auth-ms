@@ -1,6 +1,5 @@
 package com.example.msauth.domain.entities;
 
-import java.time.LocalDate;
 
 public class UserFactory {
 
@@ -8,12 +7,10 @@ public class UserFactory {
         return new User(
                 user.getUsername(),
                 password,
-                user.getEmail(),
-                user.getBornDate()
-        );
+                user.getEmail(), user.getId());
     }
 
-    public static User withUsernamePasswordEmailBornDate(String username, String password, String email, LocalDate bornDate) {
-        return new User(username, password, email, bornDate);
+    public static User withUsernamePasswordEmailBornDate(String username, String password, String email) {
+        return new User(username, password, email);
     }
 }

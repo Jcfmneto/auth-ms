@@ -22,8 +22,8 @@ public class UserGatewayImpl implements UserGateway {
     @Transactional
     public User save(User user) {
         UserEntity userEntity = userMapper.toEntity(user);
-        userRepository.save(userEntity);
-        return userMapper.toDomain(userEntity);
+       var usuarioSalvo = userRepository.save(userEntity);
+        return userMapper.toDomain(usuarioSalvo);
     }
     @Override
     @Transactional

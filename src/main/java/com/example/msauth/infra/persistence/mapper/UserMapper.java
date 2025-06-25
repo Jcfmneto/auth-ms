@@ -6,7 +6,7 @@ import com.example.msauth.infra.persistence.entity.UserEntity;
 public class UserMapper {
 
     public User toDomain(UserEntity user){
-        return new User(user.getUsername(), user.getPassword(), user.getEmail());
+        return new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getId());
     }
 
     public UserEntity toEntity(User userDomain){

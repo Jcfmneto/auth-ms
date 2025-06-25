@@ -2,7 +2,6 @@ package com.example.msauth.domain.entities;
 
 import com.example.msauth.domain.exceptions.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class
@@ -20,17 +19,30 @@ User {
     private static final String PASSWORD_REGEX =
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W_]).{8,}$";
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, Long id) {
         validarUsername(username);
         validarEmail(email);
         validarPassword(password);
 
+        this.id= id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public User(String username, String password, String email) {
+        validarUsername(username);
+        validarEmail(email);
+        validarPassword(password);
 
         this.username = username;
         this.password = password;
         this.email = email;
         this.createdAt = LocalDateTime.now();
     }
+
+
 
     public User(String email, String password){
         this.email = email;
