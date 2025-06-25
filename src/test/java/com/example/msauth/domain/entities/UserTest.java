@@ -1,6 +1,5 @@
 package com.example.msauth.domain.entities;
 
-import com.example.msauth.domain.exceptions.DataNascimentoInvalidaException;
 import com.example.msauth.domain.exceptions.EmailInvalidoException;
 import com.example.msauth.domain.exceptions.SenhaInvalidaException;
 import com.example.msauth.domain.exceptions.UsernameInvalidoException;
@@ -44,12 +43,5 @@ class UserTest {
         assertTrue(exception.getMessage().contains("Senha inválida"));
     }
 
-    @Test
-    void deveLancarExcecaoParaDataNascimentoFutura() {
-        Exception exception = assertThrows(DataNascimentoInvalidaException.class, () ->
-                new User("julio", "Senha@123", "julio@email.com", LocalDate.now().plusDays(1))
-        );
-        assertTrue(exception.getMessage().contains("Data de nascimento inválida"));
-    }
 
 }

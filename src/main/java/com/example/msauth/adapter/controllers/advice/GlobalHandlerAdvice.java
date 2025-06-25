@@ -38,11 +38,6 @@ public class GlobalHandlerAdvice {
         return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
-    @ExceptionHandler(DataNascimentoInvalidaException.class)
-    public ResponseEntity<Object> handleDataNascimentoInvalida(DataNascimentoInvalidaException ex) {
-        return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
-    }
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleValidationErrors(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();

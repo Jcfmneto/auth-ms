@@ -28,17 +28,13 @@ public class UserEntity {
     @Email
     private String email;
 
-    @Column(name = "born_date")
-    private LocalDate bornDate;
-
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public UserEntity(String username, String password, String email, LocalDate bornDate, LocalDateTime createdAt) {
+    public UserEntity(String username, String password, String email, LocalDateTime createdAt) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.bornDate = bornDate;
         this.createdAt = createdAt;
     }
     public UserEntity() {}

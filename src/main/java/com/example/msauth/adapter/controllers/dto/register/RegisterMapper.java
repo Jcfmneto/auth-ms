@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class RegisterMapper {
 
     public User toDomain(RegisterDto dto) {
-        return new User(dto.username(), dto.password(), dto.email(), dto.bornDate());
+        return new User(dto.username(), dto.password(), dto.email());
     }
 
     public RegisterResponseDto toResponse(User salvo) {

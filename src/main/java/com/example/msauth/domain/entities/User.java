@@ -12,7 +12,6 @@ User {
     private String username;
     private String password;
     private String email;
-    private LocalDate bornDate;
     private LocalDateTime createdAt;
 
     private static final String EMAIL_REGEX =
@@ -21,17 +20,15 @@ User {
     private static final String PASSWORD_REGEX =
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W_]).{8,}$";
 
-    public User(String username, String password, String email, LocalDate bornDate) {
+    public User(String username, String password, String email) {
         validarUsername(username);
         validarEmail(email);
         validarPassword(password);
-        validarBornDate(bornDate);
 
 
         this.username = username;
         this.password = password;
         this.email = email;
-        this.bornDate = bornDate;
         this.createdAt = LocalDateTime.now();
     }
 
@@ -58,11 +55,6 @@ User {
         }
     }
 
-    private void validarBornDate(LocalDate bornDate) {
-        if (bornDate == null || bornDate.isAfter(LocalDate.now())) {
-            throw new DataNascimentoInvalidaException("Data de nascimento inválida. Não pode ser futura.");
-        }
-    }
 
     public Long getId() {
         return id;
@@ -78,10 +70,6 @@ User {
 
     public String getEmail() {
         return email;
-    }
-
-    public LocalDate getBornDate() {
-        return bornDate;
     }
 
 
