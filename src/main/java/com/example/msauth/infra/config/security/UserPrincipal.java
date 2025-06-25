@@ -1,4 +1,4 @@
-package com.example.msauth.infra.config;
+package com.example.msauth.infra.config.security;
 
 import com.example.msauth.domain.entities.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,10 +11,10 @@ public class UserPrincipal implements UserDetails {
 
     private final User user;
 
+
     public UserPrincipal(User user) {
         this.user = user;
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -29,5 +29,9 @@ public class UserPrincipal implements UserDetails {
     @Override
     public String getUsername() {
         return user.getEmail();
+    }
+
+    public User getUser() {
+        return user;
     }
 }

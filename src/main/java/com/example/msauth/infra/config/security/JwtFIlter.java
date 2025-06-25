@@ -1,8 +1,7 @@
-package com.example.msauth.infra.config;
+package com.example.msauth.infra.config.security;
 
 import com.example.msauth.domain.gateways.TokenGateway;
 import com.example.msauth.infra.gateway.UserGatewayImpl;
-import com.fasterxml.jackson.core.filter.TokenFilter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

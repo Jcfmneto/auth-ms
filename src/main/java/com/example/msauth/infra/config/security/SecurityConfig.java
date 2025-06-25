@@ -1,4 +1,4 @@
-package com.example.msauth.infra.config;
+package com.example.msauth.infra.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFilter;
 
@@ -26,10 +28,15 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/auth/*", "/auth*").permitAll().anyRequest().authenticated())
+                        auth.requestMatchers("/auth/*", "/auth*").permitAll()
+                                .anyRequest().authenticated())
         .addFilterBefore(jwtFIlter, AuthenticationFilter.class);
                 return http.build();
     }
 
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return  new InMemoryUserDetailsManager();
+    }
 
 }

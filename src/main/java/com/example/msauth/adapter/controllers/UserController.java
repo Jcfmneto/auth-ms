@@ -6,8 +6,11 @@ import com.example.msauth.adapter.controllers.dto.login.LoginResponseDto;
 import com.example.msauth.adapter.controllers.dto.register.RegisterDto;
 import com.example.msauth.adapter.controllers.dto.register.RegisterResponseDto;
 import com.example.msauth.adapter.service.AuthApplicationService;
+import com.example.msauth.infra.config.security.UserPrincipal;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -26,8 +29,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<RegisterResponseDto> register(@RequestBody @Valid RegisterDto dto, UriComponentsBuilder uriComponentsBuilder){
         RegisterResponseDto usuario = authApplicationService.register(dto);
-        URI uri = uriComponentsBuilder.path("/auth/register/" + usuario.id()).build().toUri();
-        return ResponseEntity.created(uri).body(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
     }
 
     @PostMapping("/login")
@@ -36,6 +38,5 @@ public class UserController {
         LoginResponseDto response = new LoginResponseDto(token);
         return ResponseEntity.ok(response);
     }
-
 }
 
