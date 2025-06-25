@@ -5,8 +5,8 @@ import com.example.msauth.adapter.controllers.dto.login.LoginMapper;
 import com.example.msauth.adapter.controllers.dto.register.RegisterDto;
 import com.example.msauth.adapter.controllers.dto.register.RegisterMapper;
 import com.example.msauth.adapter.controllers.dto.register.RegisterResponseDto;
-import com.example.msauth.application.usecases.CreateUserUseCaseImp;
-import com.example.msauth.application.usecases.LoginUseCaseImp;
+import com.example.msauth.application.usecases.CreateUserUseCase;
+import com.example.msauth.application.usecases.LoginUseCase;
 import com.example.msauth.domain.entities.User;
 import com.example.msauth.infra.persistence.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -15,27 +15,27 @@ import org.springframework.stereotype.Service;
 public class AuthApplicationService {
 
     private final UserMapper userMapper;
-    private final LoginUseCaseImp loginUseCaseImp;
-    private final CreateUserUseCaseImp createUserUseCaseImp;
+    private final LoginUseCase loginUseCase;
+    private final CreateUserUseCase createUserUseCase;
     private final RegisterMapper registerMapper;
     private final LoginMapper loginMapper;
 
 
-    public AuthApplicationService(UserMapper userMapper, LoginUseCaseImp loginUseCaseImp, CreateUserUseCaseImp createUserUseCaseImp, RegisterMapper registerMapper, LoginMapper loginMapper) {
+    public AuthApplicationService(UserMapper userMapper, LoginUseCase loginUseCase, CreateUserUseCase createUserUseCase, RegisterMapper registerMapper, LoginMapper loginMapper) {
         this.userMapper = userMapper;
-        this.loginUseCaseImp = loginUseCaseImp;
-        this.createUserUseCaseImp = createUserUseCaseImp;
+        this.loginUseCase = loginUseCase;
+        this.createUserUseCase = createUserUseCase;
         this.registerMapper = registerMapper;
         this.loginMapper = loginMapper;
     }
 
     public RegisterResponseDto register(RegisterDto dto) {
         User user = registerMapper.toDomain(dto);
-        User salvo = createUserUseCaseImp.execute(user);
+        User salvo = createUserUseCase.execute(user);
         return registerMapper.toResponse(salvo);
     }
     public String login(LoginDto dto) {
         User user = loginMapper.toDomain(dto);
-        return loginUseCaseImp.execute(user);
+        return loginUseCase.execute(user);
     }
 }

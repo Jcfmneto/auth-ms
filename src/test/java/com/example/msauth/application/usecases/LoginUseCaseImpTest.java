@@ -19,14 +19,14 @@ class LoginUseCaseImpTest {
     private UserGateway userGateway;
     private TokenGateway tokenGateway;
     private PasswordEncoderGateway passwordEncoderGateway;
-    private LoginUseCaseImp loginUseCase;
+    private LoginUseCaseImpl loginUseCase;
 
     @BeforeEach
     void setUp() {
         userGateway = mock(UserGateway.class);
         tokenGateway = mock(TokenGateway.class);
         passwordEncoderGateway = mock(PasswordEncoderGateway.class);
-        loginUseCase = new LoginUseCaseImp(userGateway, tokenGateway, passwordEncoderGateway);
+        loginUseCase = new LoginUseCaseImpl(userGateway, tokenGateway, passwordEncoderGateway);
     }
 
     @Test

@@ -1,7 +1,7 @@
 package com.example.msauth.infra.config;
 
-import com.example.msauth.application.usecases.CreateUserUseCaseImp;
-import com.example.msauth.application.usecases.LoginUseCaseImp;
+import com.example.msauth.application.usecases.CreateUserUseCaseImpl;
+import com.example.msauth.application.usecases.LoginUseCaseImpl;
 import com.example.msauth.domain.gateways.PasswordEncoderGateway;
 import com.example.msauth.domain.gateways.TokenGateway;
 
@@ -46,13 +46,13 @@ public class BeanConfig {
     }
 
     @Bean
-    LoginUseCaseImp loginUseCaseImp(UserGateway userGateway, TokenGateway tokenGateway, PasswordEncoderGateway passwordEncoder) {
-        return new LoginUseCaseImp(userGateway, tokenGateway, passwordEncoder);
+    LoginUseCaseImpl loginUseCaseImp(UserGateway userGateway, TokenGateway tokenGateway, PasswordEncoderGateway passwordEncoder) {
+        return new LoginUseCaseImpl(userGateway, tokenGateway, passwordEncoder);
     }
 
     @Bean
-    CreateUserUseCaseImp createUserUseCaseImp(PasswordEncoderGateway passwordEncoderGateway, UserGateway userGateway) {
-        return new CreateUserUseCaseImp(passwordEncoderGateway, userGateway);
+    CreateUserUseCaseImpl createUserUseCaseImp(PasswordEncoderGateway passwordEncoderGateway, UserGateway userGateway) {
+        return new CreateUserUseCaseImpl(passwordEncoderGateway, userGateway);
     }
 
 

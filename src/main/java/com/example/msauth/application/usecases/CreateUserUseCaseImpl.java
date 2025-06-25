@@ -5,13 +5,13 @@ import com.example.msauth.domain.entities.UserFactory;
 import com.example.msauth.domain.gateways.PasswordEncoderGateway;
 import com.example.msauth.domain.gateways.UserGateway;
 
-public class CreateUserUseCaseImp implements  CreateUserUseCase {
+public class CreateUserUseCaseImpl implements  CreateUserUseCase {
 
     private final PasswordEncoderGateway passwordEncoder;
 
     private final UserGateway userGateway;
 
-    public CreateUserUseCaseImp(PasswordEncoderGateway passwordEncoder, UserGateway userGateway) {
+    public CreateUserUseCaseImpl(PasswordEncoderGateway passwordEncoder, UserGateway userGateway) {
         this.passwordEncoder = passwordEncoder;
         this.userGateway = userGateway;
     }

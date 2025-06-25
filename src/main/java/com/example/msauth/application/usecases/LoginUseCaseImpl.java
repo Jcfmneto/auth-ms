@@ -7,13 +7,13 @@ import com.example.msauth.domain.gateways.TokenGateway;
 import com.example.msauth.domain.gateways.UserGateway;
 
 
-public class LoginUseCaseImp implements LoginUseCase {
+public class LoginUseCaseImpl implements LoginUseCase {
 
     private final UserGateway userGateway;
     private final TokenGateway tokenGateway;
     private final PasswordEncoderGateway passwordEncoderGateway;
 
-    public  LoginUseCaseImp(UserGateway userGateway, TokenGateway tokenGateway, PasswordEncoderGateway passwordEncoderGateway) {
+    public LoginUseCaseImpl(UserGateway userGateway, TokenGateway tokenGateway, PasswordEncoderGateway passwordEncoderGateway) {
         this.userGateway  = userGateway;
         this.tokenGateway = tokenGateway;
         this.passwordEncoderGateway = passwordEncoderGateway;
